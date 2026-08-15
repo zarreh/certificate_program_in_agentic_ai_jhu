@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Evolution: The Essential Timeline (1950-2025)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+
+        .update-badge {
+            display: inline-block;
+            background: #10b981;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 700;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Stats Banner */
+        .stats-banner {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        }
+
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #64748b;
+            line-height: 1.3;
+        }
+
+        /* Era Sections */
+        .era-section {
+            padding: 35px 30px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .era-section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .era-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .era-icon {
+            font-size: 3em;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.2));
+        }
+
+        .era-title h2 {
+            font-size: 2em;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+
+        .era-years {
+            font-size: 1.1em;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #667eea;
+            z-index: 1;
+        }
+
+        .timeline-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .timeline-year {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content {
+            color: #4a5568;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .badge-milestone {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-hot {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Highlights Section */
+        .highlights-section {
+            padding: 40px 30px;
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left: 5px solid #f59e0b;
+        }
+
+        .highlights-section h2 {
+            font-size: 2em;
+            color: #92400e;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .highlight-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .highlight-card h3 {
+            color: #92400e;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .highlight-icon {
+            margin-right: 8px;
+        }
+
+        .highlight-card p {
+            color: #78350f;
+            line-height: 1.5;
+            font-size: 0.95em;
+        }
+
+        /* Model Cards */
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .model-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #667eea;
+        }
+
+        .model-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .model-logo {
+            font-size: 2em;
+        }
+
+        .model-name {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .model-details {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+
+        .model-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .spec-item {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .spec-label {
+            font-size: 0.75em;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .spec-value {
+            font-weight: 700;
+            color: #2d3748;
+            font-size: 0.95em;
+        }
+
+        /* Benchmark Table */
+        .model-comparison {
+            padding: 40px 30px;
+            background: white;
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #2d3748;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        td strong {
+            color: #2d3748;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 35px 30px;
+            text-align: center;
+        }
+
+        .footer h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .footer p {
+            line-height: 1.8;
+            font-size: 1em;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>🤖 AI Evolution: The Essential Timeline</h1>
+                <p class="subtitle">From Turing to Transformers: 75 Years in 15 Minutes</p>
+                <div class="update-badge">Updated December 2025</div>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="stats-banner">
+            <div class="stat-box">
+                <div class="stat-number">75</div>
+                <div class="stat-label">Years of AI Research</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Major Eras of Development</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">50%</div>
+                <div class="stat-label">Progress Made in Last 18 Months</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">1T+</div>
+                <div class="stat-label">Parameters in Largest Models</div>
+            </div>
+        </div>
+
+        <!-- Era 1: The Foundations (1950-1980) -->
+        <div class="era-section">
+            <div class="era-header">
+                <span class="era-icon">🏛️</span>
+                <div class="era-title">
+                    <h2>The Foundations</h2>
+                    <div class="era-years">1950-1980</div>
+                </div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">1950</span>
+                        <div class="timeline-title">Turing Test Published</div>
+                        <div class="timeline-content">
+                            Alan Turing poses "Can machines think?" in his landmark paper, establishing the intellectual foundation for AI research.
+                        </div>
+                        <span class="badge badge-milestone">Foundation</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">1956</span>
+                        <div class="timeline-title">AI Term Coined - Dartmouth Conference</div>
+                        <div class="timeline-content">
+                            John McCarthy organizes the Dartmouth Conference, officially coining "Artificial Intelligence" and launching AI as a formal field of study.
+                        </div>
+                        <span class="badge badge-milestone">Birth of AI</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">1957-1969</span>
+                        <div class="timeline-title">First Neural Networks - The Perceptron</div>
+                        <div class="timeline-content">
+                            Frank Rosenblatt develops the Perceptron, the first neural network capable of learning. "The Embryo of an electronic computer that [the Navy] expects will be able to walk, talk, see, write, reproduce itself and be conscious of its existence."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Era 2: AI Winter & Expert Systems (1980-2000) -->
+        <div class="era-section">
+            <div class="era-header">
+                <span class="era-icon">❄️</span>
+                <div class="era-title">
+                    <h2>AI Winter & Expert Systems</h2>
+                    <div class="era-years">1980-2000</div>
+                </div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">1986</span>
+                        <div class="timeline-title">Backpropagation Rediscovered</div>
+                        <div class="timeline-content">
+                            Rumelhart, Hinton, and Williams popularize backpropagation, enabling training of multi-layer neural networks. The technique that would eventually power modern AI.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">1997</span>
+                        <div class="timeline-title">Deep Blue Defeats Kasparov</div>
+                        <div class="timeline-content">
+                            IBM's Deep Blue becomes the first computer to defeat a reigning world chess champion in a standard match, marking AI's first major public victory.
+                        </div>
+                        <span class="badge badge-milestone">Historic Win</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Era 3: Machine Learning Revolution (2000-2012) -->
+        <div class="era-section">
+            <div class="era-header">
+                <span class="era-icon">📊</span>
+                <div class="era-title">
+                    <h2>Machine Learning Revolution</h2>
+                    <div class="era-years">2000-2012</div>
+                </div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">2006</span>
+                        <div class="timeline-title">Deep Learning Renaissance</div>
+                        <div class="timeline-content">
+                            Geoffrey Hinton publishes breakthrough work on training deep neural networks, reigniting interest in neural networks after decades of dormancy.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">2012</span>
+                        <div class="timeline-title">AlexNet Wins ImageNet</div>
+                        <div class="timeline-content">
+                            AlexNet achieves 85% accuracy in ImageNet competition (vs. 74% prior), demonstrating deep learning's superiority. Computer vision is revolutionized overnight.
+                        </div>
+                        <span class="badge badge-milestone">Deep Learning Era Begins</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Era 4: Deep Learning Dominance (2012-2020) -->
+        <div class="era-section">
+            <div class="era-header">
+                <span class="era-icon">🧠</span>
+                <div class="era-title">
+                    <h2>Deep Learning Dominance</h2>
+                    <div class="era-years">2012-2020</div>
+                </div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">2014</span>
+                        <div class="timeline-title">GANs Invented</div>
+                        <div class="timeline-content">
+                            Ian Goodfellow introduces Generative Adversarial Networks, enabling photorealistic image generation and launching the creative AI revolution.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">2017</span>
+                        <div class="timeline-title">Transformer Architecture: "Attention Is All You Need"</div>
+                        <div class="timeline-content">
+                            Google researchers publish the Transformer architecture, introducing the self-attention mechanism that would become the foundation for GPT, BERT, and all modern LLMs.
+                        </div>
+                        <span class="badge badge-milestone">Modern AI Foundation</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">2018</span>
+                        <div class="timeline-title">GPT-1 & BERT Released</div>
+                        <div class="timeline-content">
+                            OpenAI releases GPT-1 (117M parameters) proving transformers work for language generation. Google releases BERT, revolutionizing NLP with bidirectional understanding.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">2020</span>
+                        <div class="timeline-title">GPT-3 Stuns the World</div>
+                        <div class="timeline-content">
+                            OpenAI releases GPT-3 (175B parameters), demonstrating that scale + transformers = emergent capabilities. In-context learning and few-shot learning surprise even the researchers.
+                        </div>
+                        <span class="badge badge-hot">Game Changer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Era 5: The AI Explosion (2022-2025) -->
+        <div class="era-section">
+            <div class="era-header">
+                <span class="era-icon">🚀</span>
+                <div class="era-title">
+                    <h2>The AI Explosion</h2>
+                    <div class="era-years">2022-2025</div>
+                </div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">Nov 2022</span>
+                        <div class="timeline-title">ChatGPT Launches</div>
+                        <div class="timeline-content">
+                            ChatGPT reaches 1M users in 5 days, 100M in 2 months. AI enters mainstream consciousness. The world changes overnight.
+                        </div>
+                        <span class="badge badge-hot">Cultural Moment</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">Mar 2023</span>
+                        <div class="timeline-title">GPT-4 Released</div>
+                        <div class="timeline-content">
+                            OpenAI releases GPT-4 with vision, 128K context, and near-human performance on professional exams. Passes the bar exam at 90th percentile.
+                        </div>
+                        <span class="badge badge-milestone">Multimodal Frontier</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">2024</span>
+                        <div class="timeline-title">The Open Source Surge</div>
+                        <div class="timeline-content">
+                            Meta releases Llama 3 (open weights, 405B parameters). Claude 3.5 Sonnet achieves SOTA coding. Competition intensifies between OpenAI, Anthropic, Google, and Meta.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">Dec 2024</span>
+                        <div class="timeline-title">DeepSeek V3: China's Cost Revolution</div>
+                        <div class="timeline-content">
+                            Chinese startup DeepSeek releases V3 (671B MoE), trained for just $6M vs. $100M+ for competitors. Matches GPT-4o and Claude 3.5 performance while using 1/10th the computing power, proving ultra-efficient training is possible.
+                        </div>
+                        <span class="badge badge-hot">Efficiency Breakthrough</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">Jan 2025</span>
+                        <div class="timeline-title">DeepSeek R1 & Chatbot Launch</div>
+                        <div class="timeline-content">
+                            DeepSeek releases R1 reasoning model matching OpenAI o1 performance. The free chatbot reaches #1 on iOS App Store, surpassing ChatGPT and triggering 18% drop in NVIDIA stock. Open-source AI disrupts the market.
+                        </div>
+                        <span class="badge badge-hot">Market Disruption</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">Aug 2025</span>
+                        <div class="timeline-title">DeepSeek V3.1: Hybrid Intelligence</div>
+                        <div class="timeline-content">
+                            DeepSeek V3.1 introduces hybrid thinking/non-thinking modes, enhanced tool use, and superior agentic capabilities. Outperforms V3 and R1 by 40% on SWE-bench. One model for both reasoning and speed.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">Sep-Oct 2024</span>
+                        <div class="timeline-title">Salesforce Agentforce Launches</div>
+                        <div class="timeline-content">
+                            Salesforce launches Agentforce, the first enterprise "digital labor platform." Within 2 months: 6,000+ deals closed, 10,000 agents built at Dreamforce, 84% autonomous case resolution. Becomes Salesforce's fastest-growing product ever with 330% YoY ARR growth.
+                        </div>
+                        <span class="badge badge-milestone">Enterprise Agents</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">Nov 2025</span>
+                        <div class="timeline-title">Gemini 3.0 & GPT-5.1 Launch</div>
+                        <div class="timeline-content">
+                            Google releases Gemini 3.0 with native multimodal architecture and 2M token context. OpenAI counters with GPT-5.1 (1M context, advanced reasoning). Released just 6 days apart - the AI race reaches peak intensity.
+                        </div>
+                        <span class="badge badge-hot">Present Day</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-card">
+                        <span class="timeline-year">Dec 2025</span>
+                        <div class="timeline-title">DeepSeek V3.2 & Agentic AI Explosion</div>
+                        <div class="timeline-content">
+                            DeepSeek V3.2 debuts thinking-in-tool-use and Sparse Attention. Meanwhile, agentic AI reaches production scale: Microsoft, AWS, Salesforce deploy agent platforms. Gartner predicts 15% of work decisions made autonomously by 2028. Capital One, PepsiCo show 40% cost reductions.
+                        </div>
+                        <span class="badge badge-milestone">Autonomy Era</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2025 State of the Art -->
+        <div class="highlights-section">
+            <h2>💡 The 2025 Frontier Models</h2>
+            <div class="model-grid">
+                <div class="model-card" style="border-top-color: #10b981;">
+                    <div class="model-header">
+                        <span class="model-logo">🟢</span>
+                        <div class="model-name">GPT-5.1</div>
+                    </div>
+                    <div class="model-details">
+                        <strong>Released:</strong> November 2025<br>
+                        <strong>Key Strength:</strong> Best conversational AI, exceptional reasoning<br>
+                        <strong>Context:</strong> 1M tokens
+                    </div>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <div class="spec-label">Context</div>
+                            <div class="spec-value">1M tokens</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Best At</div>
+                            <div class="spec-value">Conversation</div>
+                        </div>
+                    </div>
+                    <span class="badge badge-milestone">OpenAI</span>
+                </div>
+
+                <div class="model-card" style="border-top-color: #f59e0b;">
+                    <div class="model-header">
+                        <span class="model-logo">🔷</span>
+                        <div class="model-name">Claude 4.5 Sonnet</div>
+                    </div>
+                    <div class="model-details">
+                        <strong>Released:</strong> October 2025<br>
+                        <strong>Key Strength:</strong> #1 in coding (SWE-bench 77.2%)<br>
+                        <strong>Context:</strong> 200K tokens
+                    </div>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <div class="spec-label">Coding</div>
+                            <div class="spec-value">Best 🏆</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Computer Use</div>
+                            <div class="spec-value">Yes</div>
+                        </div>
+                    </div>
+                    <span class="badge badge-milestone">Anthropic</span>
+                </div>
+
+                <div class="model-card" style="border-top-color: #3b82f6;">
+                    <div class="model-header">
+                        <span class="model-logo">🔵</span>
+                        <div class="model-name">Gemini 3.0</div>
+                    </div>
+                    <div class="model-details">
+                        <strong>Released:</strong> November 2025<br>
+                        <strong>Key Strength:</strong> PhD-level reasoning, native multimodal<br>
+                        <strong>Context:</strong> 2M tokens (largest in industry)
+                    </div>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <div class="spec-label">Context</div>
+                            <div class="spec-value">2M 🏆</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">GPQA</div>
+                            <div class="spec-value">91.9% 🏆</div>
+                        </div>
+                    </div>
+                    <span class="badge badge-milestone">Google</span>
+                </div>
+
+                <div class="model-card" style="border-top-color: #8b5cf6;">
+                    <div class="model-header">
+                        <span class="model-logo">🦙</span>
+                        <div class="model-name">Llama 3.1 → 3.3</div>
+                    </div>
+                    <div class="model-details">
+                        <strong>Released:</strong> July → Dec 2024<br>
+                        <strong>Key Strength:</strong> Open-source leader (650M+ downloads), 405B flagship rivals closed models<br>
+                        <strong>Impact:</strong> Most adopted open model globally
+                    </div>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <div class="spec-label">Downloads</div>
+                            <div class="spec-value">650M+ 🏆</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Size Range</div>
+                            <div class="spec-value">8B-405B</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">License</div>
+                            <div class="spec-value">Open</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Context</div>
+                            <div class="spec-value">128K</div>
+                        </div>
+                    </div>
+                    <span class="badge badge-milestone">Meta</span>
+                </div>
+
+                <div class="model-card" style="border-top-color: #ec4899;">
+                    <div class="model-header">
+                        <span class="model-logo">🟣</span>
+                        <div class="model-name">Qwen 2.5 → 3.0</div>
+                    </div>
+                    <div class="model-details">
+                        <strong>Released:</strong> Sept 2024 → Apr 2025<br>
+                        <strong>Key Strength:</strong> 100+ models (0.5B-235B), 40M+ downloads, multilingual (119 languages), strong coding/math<br>
+                        <strong>Latest:</strong> Qwen 2.5-Max beats GPT-4o, DeepSeek-V3
+                    </div>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <div class="spec-label">Downloads</div>
+                            <div class="spec-value">40M+</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Model Sizes</div>
+                            <div class="spec-value">100+</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Languages</div>
+                            <div class="spec-value">119</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">License</div>
+                            <div class="spec-value">Apache 2.0</div>
+                        </div>
+                    </div>
+                    <span class="badge badge-milestone">Alibaba</span>
+                </div>
+
+                <div class="model-card" style="border-top-color: #ef4444;">
+                    <div class="model-header">
+                        <span class="model-logo">🔴</span>
+                        <div class="model-name">DeepSeek V3 → V3.2</div>
+                    </div>
+                    <div class="model-details">
+                        <strong>Released:</strong> Dec 2024 → Dec 2025<br>
+                        <strong>Key Strength:</strong> Ultra-efficient ($6M training!), rapid evolution (V3→V3.1→V3.2), hybrid reasoning modes<br>
+                        <strong>Impact:</strong> Disrupted cost assumptions, proved open-source can compete
+                    </div>
+                    <div class="model-specs">
+                        <div class="spec-item">
+                            <div class="spec-label">Training Cost</div>
+                            <div class="spec-value">$6M 🏆</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Parameters</div>
+                            <div class="spec-value">671B MoE</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Evolution</div>
+                            <div class="spec-value">V3→V3.2</div>
+                        </div>
+                        <div class="spec-item">
+                            <div class="spec-label">Latest</div>
+                            <div class="spec-value">Tool+Think</div>
+                        </div>
+                    </div>
+                    <span class="badge badge-hot">Open Source</span>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 50px; text-align: center; color: #2d3748;">🤖 Agentic AI in Business: The Salesforce Agentforce Story</h2>
+            <div style="background: white; padding: 30px; border-radius: 15px; margin-top: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-left: 5px solid #0070d2;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 20px;">
+                    <div>
+                        <h3 style="color: #0070d2; margin-bottom: 15px;">📊 The Numbers Tell the Story</h3>
+                        <ul style="line-height: 1.8; color: #4a5568;">
+                            <li><strong>Fastest-growing product ever</strong> at Salesforce (330% YoY ARR growth)</li>
+                            <li><strong>6,000+ deals</strong> closed since Oct 2024 launch (3,000+ paid)</li>
+                            <li><strong>10,000 agents</strong> built by attendees at Dreamforce in 3 days</li>
+                            <li><strong>84% autonomous resolution</strong> of customer cases</li>
+                            <li><strong>50% of Fortune 100</strong> companies using it</li>
+                            <li><strong>IRS saved 98%</strong> of manual tasks, cutting processes from 10 days to 30 minutes</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: #0070d2; margin-bottom: 15px;">🎯 What Makes It Special</h3>
+                        <p style="color: #4a5568; line-height: 1.8; margin-bottom: 15px;">
+                            <strong>Agentforce</strong> represents the shift from chatbots to autonomous "digital labor." Unlike copilots that need constant human prompting, these agents:
+                        </p>
+                        <ul style="line-height: 1.8; color: #4a5568;">
+                            <li>Make decisions and take actions independently</li>
+                            <li>Work 24/7 across sales, service, marketing</li>
+                            <li>Integrate with existing Salesforce data & workflows</li>
+                            <li>Use Atlas Reasoning Engine for human-like planning</li>
+                            <li>Can be built with natural language (no coding needed)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                    <p style="color: #2d3748; font-size: 0.95em; line-height: 1.7; margin: 0;">
+                        <strong>🎓 For Your Class:</strong> Agentforce is the perfect case study for business agentic AI. It shows how agents moved from theory (2023) → prototypes (early 2024) → enterprise production (late 2024) → explosive growth (2025). Students can explore real ROI data, see agent architecture (Atlas Reasoning Engine, Data Cloud integration), and understand governance challenges at scale.
+                    </p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 50px; text-align: center; color: #2d3748;">🛠️ Popular Agentic AI Frameworks</h2>
+            <div style="background: white; padding: 30px; border-radius: 15px; margin-top: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-left: 5px solid #667eea;">
+                <p style="color: #4a5568; line-height: 1.7; margin-bottom: 25px; font-size: 0.95em;">
+                    Building agentic AI applications requires robust frameworks. Here are the top tools developers are using in 2025 to create autonomous, multi-agent systems:
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #10b981;">
+                        <h3 style="color: #10b981; margin-bottom: 10px; font-size: 1.1em;">🔗 LangGraph</h3>
+                        <p style="color: #4a5568; font-size: 0.9em; line-height: 1.6;">
+                            <strong>By LangChain:</strong> Graph-based workflow orchestration with stateful agents. Best for complex, multi-step reasoning with precise control over agent flow. Lowest latency in benchmarks.
+                        </p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #3b82f6;">
+                        <h3 style="color: #3b82f6; margin-bottom: 10px; font-size: 1.1em;">👥 CrewAI</h3>
+                        <p style="color: #4a5568; font-size: 0.9em; line-height: 1.6;">
+                            <strong>By AI Fund (Andrew Ng):</strong> Role-based multi-agent teams. Simplest to learn with intuitive "crew" concept. Best for rapid prototyping and production-grade agent systems with task delegation.
+                        </p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #8b5cf6;">
+                        <h3 style="color: #8b5cf6; margin-bottom: 10px; font-size: 1.1em;">💬 AutoGen</h3>
+                        <p style="color: #4a5568; font-size: 0.9em; line-height: 1.6;">
+                            <strong>By Microsoft:</strong> Conversation-driven multi-agent collaboration. Enterprise-grade reliability with advanced error handling. Best for research, prototyping, and agent-to-agent dialogue.
+                        </p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #f59e0b;">
+                        <h3 style="color: #f59e0b; margin-bottom: 10px; font-size: 1.1em;">📚 LlamaIndex</h3>
+                        <p style="color: #4a5568; font-size: 0.9em; line-height: 1.6;">
+                            <strong>Data-centric agents:</strong> Specializes in RAG (Retrieval-Augmented Generation) and data indexing. Best for agents that need to work with enterprise data, documents, and knowledge bases.
+                        </p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #ec4899;">
+                        <h3 style="color: #ec4899; margin-bottom: 10px; font-size: 1.1em;">🌀 OpenAI Swarm</h3>
+                        <p style="color: #4a5568; font-size: 0.9em; line-height: 1.6;">
+                            <strong>By OpenAI:</strong> Lightweight, experimental framework for multi-agent coordination. Educational/research focus. Best for rapid experiments and learning agent patterns.
+                        </p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; border-left: 4px solid #6366f1;">
+                        <h3 style="color: #6366f1; margin-bottom: 10px; font-size: 1.1em;">🔧 Semantic Kernel</h3>
+                        <p style="color: #4a5568; font-size: 0.9em; line-height: 1.6;">
+                            <strong>By Microsoft:</strong> Enterprise LLM integration for .NET/C#/Java. Strong security and governance. Best for integrating AI into existing enterprise applications with strict compliance.
+                        </p>
+                    </div>
+                </div>
+                <div style="background: #f0f9ff; padding: 20px; border-radius: 10px; margin-top: 25px; border: 2px solid #3b82f6;">
+                    <p style="color: #1e3a8a; font-size: 0.95em; line-height: 1.7; margin: 0;">
+                        <strong>🎓 For Your Class:</strong> These frameworks abstract away the complexity of agent orchestration, memory management, and tool integration. Most popular stack: <strong>LangGraph for workflow control</strong>, <strong>CrewAI for team-based agents</strong>, and <strong>AutoGen for conversational loops</strong>. Students can compare architectures (graph-based vs role-based vs conversation-driven) and understand tradeoffs between control, simplicity, and enterprise features.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simplified Benchmark Table -->
+        <div class="model-comparison">
+            <h2 class="section-title">📊 Key Benchmark Comparison (Nov 2025)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Benchmark</th>
+                        <th>GPT-5.1</th>
+                        <th>Claude 4.5</th>
+                        <th>Gemini 3</th>
+                        <th>What It Measures</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>GPQA Diamond</strong></td>
+                        <td>88.1%</td>
+                        <td>83.4%</td>
+                        <td>91.9% 🏆</td>
+                        <td>PhD-level science</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SWE-bench Verified</strong></td>
+                        <td>76.3%</td>
+                        <td>77.2% 🏆</td>
+                        <td>76.2%</td>
+                        <td>Real coding tasks</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MATH-500</strong></td>
+                        <td>94.0%</td>
+                        <td>87.0%</td>
+                        <td>95.0% 🏆</td>
+                        <td>Advanced math</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HumanEval</strong></td>
+                        <td>96.0%</td>
+                        <td>98.0% 🏆</td>
+                        <td>97.0%</td>
+                        <td>Code generation</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="text-align: center; margin-top: 15px; color: #64748b; font-size: 0.9em;">
+                <strong>Key Takeaway:</strong> No single "best" model - each excels in different areas!
+            </p>
+        </div>
+
+        <!-- What's Next -->
+        <div class="highlights-section" style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); border-left-color: #3b82f6;">
+            <h2 style="color: #1e40af;">🔮 What's Next: 2026 and Beyond</h2>
+            <div class="highlights-grid">
+                <div class="highlight-card">
+                    <h3 style="color: #1e40af;"><span class="highlight-icon">🤖</span>Agentic AI Becomes Standard</h3>
+                    <p style="color: #1e3a8a;"><strong>The year of the agent:</strong> AI agents autonomously handle work decisions (Gartner: 15% by 2028), plan multi-step tasks, and orchestrate workflows. Companies like Capital One and PepsiCo report 40% cost reductions. Agents go from chatbots to autonomous business partners.</p>
+                </div>
+                <div class="highlight-card">
+                    <h3 style="color: #1e40af;"><span class="highlight-icon">🚀</span>AGI on the Horizon</h3>
+                    <p style="color: #1e3a8a;">50% of researchers now predict AGI by 2027-2030. The pace suggests they may be right.</p>
+                </div>
+                <div class="highlight-card">
+                    <h3 style="color: #1e40af;"><span class="highlight-icon">💰</span>Costs Plummet</h3>
+                    <p style="color: #1e3a8a;">DeepSeek proved efficient training works. Expect sub-$10M training runs and democratized AI access globally.</p>
+                </div>
+                <div class="highlight-card">
+                    <h3 style="color: #1e40af;"><span class="highlight-icon">🌐</span>Multimodal Native</h3>
+                    <p style="color: #1e3a8a;">Future models will be natively multimodal from the start - seamless text/image/audio/video understanding.</p>
+                </div>
+                <div class="highlight-card">
+                    <h3 style="color: #1e40af;"><span class="highlight-icon">🔗</span>Agent Ecosystems</h3>
+                    <p style="color: #1e3a8a;">Multi-agent systems collaborate across domains. Microsoft, Salesforce, AWS deploy agent platforms with standardized protocols (MCP, A2A) enabling agent-to-agent communication.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h3>The AI Revolution is Just Beginning</h3>
+            <p>
+                From Turing's 1950 test to Gemini 3 in November 2025, we've witnessed 75 years of progress.
+                <br><br>
+                <strong>But 50% of all AI progress happened in the last 18 months.</strong>
+                <br><br>
+                2025 brought unprecedented breakthroughs: DeepSeek proved you can train frontier models for $6M instead of $100M+. 
+                Agentic AI moved from theory to production, with autonomous agents making real business decisions. 
+                Three frontier models launched in 50 days. The pace isn't slowing - it's accelerating.
+                <br><br>
+                <strong>You're entering this field at the most exciting moment in its history. 
+                AI agents are becoming autonomous partners, costs are plummeting, and the path to AGI is clearer than ever.
+                The systems you build and ethics you champion will shape humanity's future.</strong>
+                <br><br>
+                Welcome to the AI revolution. 🚀
+            </p>
+        </div>
+    </div>
+</body>
+</html>

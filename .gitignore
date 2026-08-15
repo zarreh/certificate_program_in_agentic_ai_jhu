@@ -1,0 +1,77 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# API keys and config files (keep the example, not the real one)
+# Anchored to root only: nested config.json files elsewhere are symlinks
+# back to this one so notebooks in subfolders can find it, and those
+# symlinks (just a relative path, no secrets) should stay tracked in git.
+/config.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_checkpoints/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+
+# Deepeval local artifacts
+.deepeval/
+
+# LangGraph dev server state
+.langgraph_api/
+
+# Gradio
+.gradio/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
