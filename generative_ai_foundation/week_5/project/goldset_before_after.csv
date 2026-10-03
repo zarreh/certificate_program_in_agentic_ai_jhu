@@ -1,0 +1,9 @@
+ticker,question,expected,v1_hit,v2_answer,v2_hit
+AMZN,Which Amazon custom accelerator targets model training?,Trainium,True,Trainium,True
+NVDA,What is the NVIDIA in-game assistance initiative codenamed?,Flamingo,False,Project G-Assist,False
+MSFT,Which Microsoft tool delivers AI-assisted code completion?,IntelliCode,False,GitHub Copilot,False
+GOOGL,What is Google's AI research subsidiary?,DeepMind,False,DeepMind,True
+MSFT,What is Microsoft's flagship AI assistant product brand?,Copilot,False,Microsoft 365 Copilot,True
+AMZN,Which AWS service hosts managed foundation models?,Bedrock,True,Amazon Bedrock,True
+IBM,What advanced computing area does IBM emphasise alongside AI?,Quantum,False,Cognitive computing.,False
+IBM,What is IBM's data security and governance product family?,Guardium,False,IBM's data security and governance product family includes Guardium and Watsonx Governance.,True

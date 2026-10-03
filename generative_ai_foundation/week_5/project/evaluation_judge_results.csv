@@ -1,0 +1,17 @@
+Q#,question,answer,groundedness,context_relevance,answer_relevance,pass_all
+Q1,What is Google's primary foundation-model family?,Google's primary foundation-model family is Gemini.,5,5,5,True
+Q2,What are the main AI initiatives IBM is pursuing?,"IBM is pursuing several main AI initiatives, including:
+
+1. IBM Watson: Enhancing decision-making, automating processes, facilitating innovation, and ensuring responsible AI.
+2. IBM Watsonx: An AI and data platform combining AI capabilities with analytical software.
+3. IBM Granite: A series of open-source, high-performance AI foundation models for enterprise applications.
+4. IBM Guardium AI Security: Securing AI systems, especially generative and autonomous AI, by managing risks around models, data, usage, and governance.",5,5,5,True
+Q3,How does NVIDIA's AI strategy differ from Amazon's AI strategy?,I don't know.,1,2,1,False
+Q4,What was Microsoft's total AI revenue for fiscal year 2025?,I don't know.,5,2,1,False
+Q5,What timelines are mentioned for Amazon's foundation-model initiatives?,"The timelines mentioned for Amazon's foundation-model initiatives are:
+
+1. **Announcement and Preview**: Amazon Bedrock was announced in April 2023, with a preview release allowing select customers to explore its capabilities.
+2. **General Availability**: The platform became generally available in July 2023.
+3. **Ongoing Developments**: Since its launch, AWS has continued to enhance Bedrock's features. 
+
+For the Olympus model, the development has been ongoing over the past year, but the exact start date is not publicly disclosed.",5,3,5,False

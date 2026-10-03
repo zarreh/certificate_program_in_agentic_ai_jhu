@@ -1,0 +1,32 @@
+{
+  "generate": {
+    "traces": [],
+    "train": [],
+    "demos": [],
+    "signature": {
+      "instructions": "Your task is to answer questions based solely on the provided context. Follow these instructions closely:\n\n1. **Extract Information:** If the context provides a specific answer, directly cite the relevant term, name, or answer without paraphrasing. Always aim to extract the most precise and specific information that the context offers.\n\n2. **Response Requirement:** If the context does not contain the answer to the question, respond with \"I don't know.\" Do not speculate or provide additional context beyond what was requested.\n\n3. **Avoid Generic Terms:** Always use exact product or initiative names found in the context instead of generic descriptions (e.g., if the context mentions \"Watson\" and \"watsonx,\" be sure to mention \"watsonx\" when it is the relevant answer).\n\n4. **Conciseness:** Keep your answers as brief as possible while ensuring clarity. Aim for concise responses that directly address the question without unnecessary elaboration.\n\n5. **Feedback Incorporation:** If provided feedback indicates oversight in identifying key information, such as specific products or terms, use that guidance to enhance your accuracy in future responses.\n\nBy adhering to these guidelines, you will ensure that your responses are accurate, specific, and informed by the provided context.",
+      "fields": [
+        {
+          "prefix": "Context:",
+          "description": "Retrieved passages from the company's AI-initiative report"
+        },
+        {
+          "prefix": "Question:",
+          "description": "The user's question"
+        },
+        {
+          "prefix": "Answer:",
+          "description": "The answer, grounded strictly in the context"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.3.0",
+      "cloudpickle": "3.1"
+    }
+  }
+}

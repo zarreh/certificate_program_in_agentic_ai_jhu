@@ -1,0 +1,21 @@
+ticker,question,expected,answer,exact_hit
+MSFT,What is Microsoft's flagship AI assistant product brand?,Copilot,I don't know.,False
+MSFT,Which Microsoft cloud platform hosts AI services?,Azure,Azure,True
+MSFT,What is Microsoft's AI development platform for foundation models?,Foundry,I don't know.,False
+MSFT,Which Microsoft tool delivers AI-assisted code completion?,IntelliCode,GitHub Copilot delivers AI-assisted code completion.,False
+GOOGL,What is Google's primary foundation-model family?,Gemini,Google's primary foundation-model family is Gemini.,True
+GOOGL,Which accelerator chip does Google use to train its large models?,TPU,I don't know.,False
+GOOGL,What is Google's AI research subsidiary?,DeepMind,I don't know.,False
+GOOGL,What multimodal agentic AI initiative is mentioned by Google?,Astra,Project Astra is the multimodal agentic AI initiative mentioned by Google.,True
+IBM,What is IBM's enterprise AI platform branded as?,watsonx,I don't know.,False
+IBM,Which open foundation-model family does IBM publish?,Granite,IBM publishes the Granite family of open foundation models.,True
+IBM,What is IBM's data security and governance product family?,Guardium,I don't know.,False
+IBM,What advanced computing area does IBM emphasise alongside AI?,Quantum,I don't know.,False
+NVDA,Which NVIDIA software stack underpins AI development?,CUDA,"The NVIDIA software stack that underpins AI development includes CUDA, Omniverse, and AI microservices.",True
+NVDA,What NVIDIA upscaling technology accelerates real-time rendering?,DLSS,DLSS 4 accelerates real-time rendering.,True
+NVDA,Which NVIDIA microservice framework deploys foundation models?,NIM,I don't know.,False
+NVDA,What is the NVIDIA in-game assistance initiative codenamed?,Flamingo,I don't know.,False
+AMZN,Which AWS service hosts managed foundation models?,Bedrock,Amazon Bedrock hosts managed foundation models.,True
+AMZN,What is Amazon's internal large foundation-model project codenamed?,Olympus,Olympus,True
+AMZN,Which Amazon ML platform supports model training and deployment?,SageMaker,Amazon SageMaker supports model training and deployment.,True
+AMZN,Which Amazon custom accelerator targets model training?,Trainium,The custom accelerator that targets model training is Trainium.,True

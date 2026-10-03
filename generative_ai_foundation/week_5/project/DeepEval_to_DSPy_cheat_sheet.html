@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From DeepEval to DSPy - Bridge Cheat Sheet</title>
+<style>
+  :root {
+    --ink: #1c1c1e;
+    --ink-soft: #55555a;
+    --paper: #f7f7f4;
+    --panel: #ffffff;
+    --line: #e2e0da;
+    --de: #a35a0b;
+    --de-bg: #fbf1e2;
+    --ds: #2c3e6b;
+    --ds-bg: #eaedf5;
+    --code-bg: #f1f0ec;
+    --code-border: #ddd9cf;
+    --maxw: 1080px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 16.5px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  code, pre {
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 56px 24px 96px;
+  }
+
+  .masthead {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 24px;
+    margin-bottom: 6px;
+  }
+  .masthead .kicker {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    margin: 0 0 10px 0;
+  }
+  .masthead .side { font-weight: 600; }
+  .masthead .side.de { color: var(--de); }
+  .masthead .side.ds { color: var(--ds); }
+  .masthead h1 {
+    font-size: 1.9rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .masthead h3:first-of-type {
+    font-weight: 400;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    margin: 10px 0 22px 0;
+  }
+  .masthead h3#purpose-and-scope {
+    font-size: 1.0rem;
+    font-weight: 600;
+    margin: 6px 0 12px 0;
+    color: var(--ink-soft);
+    letter-spacing: 0.01em;
+  }
+  .masthead p { margin: 0 0 14px 0; }
+  .masthead ul { margin: 0 0 6px 0; }
+
+  h2 {
+    font-size: 1.32rem;
+    margin: 52px 0 16px 0;
+    padding-top: 4px;
+    letter-spacing: -0.005em;
+  }
+  h3 {
+    font-size: 1.05rem;
+    margin: 30px 0 12px 0;
+  }
+
+  p { margin: 0 0 16px 0; }
+  ul, ol { margin: 0 0 18px 0; padding-left: 1.35em; }
+  li { margin-bottom: 6px; }
+  li p { margin-bottom: 6px; }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin: 40px 0;
+  }
+
+  strong.tag-de { color: var(--de); }
+  strong.tag-ds { color: var(--ds); }
+
+  a { color: var(--ds); }
+
+  p code, li code, td code, h2 code, h3 code {
+    background: var(--code-bg);
+    border: 1px solid var(--code-border);
+    border-radius: 4px;
+    padding: 0.05em 0.4em;
+    font-size: 0.86em;
+    white-space: nowrap;
+  }
+
+  pre {
+    background: #23252b;
+    color: #e8e6df;
+    border-radius: 8px;
+    padding: 18px 20px;
+    overflow-x: auto;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    margin: 0 0 20px 0;
+    border: 1px solid #14151a;
+  }
+  pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    color: inherit;
+    white-space: pre;
+    font-size: inherit;
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+    margin: 0 0 22px 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.87rem;
+    background: var(--panel);
+  }
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--line);
+  }
+  th {
+    background: #efeee8;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+  }
+  tr:last-child td { border-bottom: none; }
+  td code, th code { white-space: normal; }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 100px;
+    margin-left: 10px;
+    position: relative;
+    top: -2px;
+  }
+  .section-tag.de { background: var(--de-bg); color: var(--de); }
+  .section-tag.ds { background: var(--ds-bg); color: var(--ds); }
+
+  blockquote {
+    margin: 0;
+    border-left: 4px solid var(--ink);
+    background: var(--panel);
+    padding: 18px 22px;
+    border-radius: 0 8px 8px 0;
+  }
+  blockquote p { margin: 0 0 10px 0; font-size: 1.0rem; }
+  blockquote p:last-child { margin-bottom: 0; }
+  blockquote strong { color: var(--ink); }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 36px 16px 64px; }
+    .masthead h1 { font-size: 1.5rem; }
+    body { font-size: 15.5px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <p class="kicker"><span class="side de">DeepEval</span> - what you already know &nbsp;→&nbsp; <span class="side ds">DSPy</span> - what the project needs</p>
+<h1 id="from-deepeval-to-dspy---bridge-cheat-sheet">From DeepEval to
+DSPy - Bridge Cheat Sheet</h1>
+<h3 id="a-practical-guide-for-moving-from-deepeval-to-dspy">A practical
+guide for moving from DeepEval to DSPy</h3>
+<h3 id="purpose-and-scope">Purpose and scope</h3>
+<p>DeepEval and DSPy support different parts of an evaluation-driven LLM
+workflow:</p>
+<ul>
+<li><strong class="tag-de">DeepEval</strong> provides test cases, evaluation metrics,
+and GEPA workflows around prompts or model callbacks.</li>
+<li><strong class="tag-ds">DSPy</strong> represents an LLM workflow as typed signatures
+and callable modules, then uses an optimizer such as GEPA to improve the
+instructions inside that workflow.</li>
+</ul>
+<p>GEPA's central loop remains the same in both tools: run candidates,
+score them, collect useful feedback, revise the instructions, and retain
+better candidates. This guide explains how that same loop is expressed
+in DSPy for the prompt-optimization section of the DualLens project. It
+is intentionally focused and is <strong>not a complete DSPy
+course</strong>. The preceding project sections provide the retriever,
+<code>format_context</code>, gold dataset, and baseline evaluation
+tables. The three DSPy building blocks needed here are:</p>
+<ul>
+<li><code>Signature</code>: a typed prompt contract; its docstring is
+the instruction text.</li>
+<li><code>Predict</code>: a callable generator that uses a
+<code>Signature</code> and returns a prediction (for this project, read
+the answer as <code>pred.answer</code>).</li>
+<li><code>Module</code>: a Python pipeline whose <code>forward()</code>
+method connects retrieval to <code>Predict</code>.</li>
+</ul>
+<p>The project pins <code>dspy==3.2.1</code>. Run the notebook cells in
+order and use the exact project variable/function names. The examples
+below explain the DSPy shape; the project notebook provides the
+surrounding code skeleton.</p>
+  </div>
+
+<h2 id="1-the-core-mapping">1. The core mapping<span class="section-tag de">DeepEval</span><span class="section-tag ds">DSPy</span></h2>
+<div class="table-scroll"><table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Concept</th>
+<th>DeepEval</th>
+<th>DSPy (Project)</th>
+<th>What to watch for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><strong>The prompt itself</strong></td>
+<td><code>Prompt(text_template="...{input}...")</code> - a string
+template</td>
+<td><code>class GroundedQA(dspy.Signature): """&lt;prompt text goes here&gt;"""</code>
+- the <strong>docstring is the prompt</strong></td>
+<td>It's a class, not a string. <code>InputField(desc=...)</code> /
+<code>OutputField(desc=...)</code> descriptions are <em>also</em> part
+of the prompt that GEPA can rewrite.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><strong>One test case</strong></td>
+<td><code>Golden(input=..., context=..., additional_metadata=...)</code></td>
+<td><code>dspy.Example(question=..., context=..., answer=...).with_inputs("question", "context")</code></td>
+<td><code>.with_inputs(...)</code> is <strong>required</strong> - it
+tells DSPy which fields are inputs vs. the labelled answer. No DeepEval
+equivalent; easy to forget.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><strong>Running one candidate on one example</strong></td>
+<td>You write <code>model_callback(prompt, golden)</code> and call
+<code>llm_call(...)</code> yourself</td>
+<td>You write the project's
+<code>Module.forward(self, question, ticker_hint)</code>; DSPy calls it
+with the example's declared inputs</td>
+<td>Retrieval (your ChromaDB filtered search) must live
+<strong>inside</strong> <code>forward()</code>. GEPA evaluates the
+complete pipeline, but it rewrites the generation instructions-not the
+Python retrieval code.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><strong>Scoring a candidate</strong></td>
+<td><code>metric.measure(test_case)</code>, then read
+<code>metric.score</code> / <code>metric.reason</code></td>
+<td>A plain function such as
+<code>def gepa_metric(example, pred, trace=None, pred_name=None, pred_trace=None)</code></td>
+<td>The extra GEPA arguments are optional, but the project skeleton
+includes them. Return
+<code>dspy.Prediction(score=..., feedback=...)</code>, not a float or
+dict.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><strong>Giving GEPA feedback to reflect on</strong></td>
+<td>Comes from the metric object's <code>.reason</code>
+(per-metric)</td>
+<td>You must build the <code>feedback=</code> string
+<strong>yourself</strong> inside the metric function</td>
+<td>A bare <code>return score</code> (float) still runs - but reflection
+gets nothing to read, so prompt rewrites degrade toward random
+search.</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><strong>The optimizer object</strong></td>
+<td><code>PromptOptimizer(algorithm=GEPA(iterations=, pareto_size=, minibatch_size=), model_callback=, metrics=, optimizer_model=)</code></td>
+<td><code>dspy.teleprompt.GEPA(metric=, reflection_lm=, auto=... )</code></td>
+<td>DSPy's GEPA needs a <strong>separate</strong>
+<code>reflection_lm</code> - don't reuse the task LM object.</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><strong>Global model wiring</strong></td>
+<td>Model passed explicitly at each call site
+(<code>model_callback</code>, <code>optimizer_model=</code>)</td>
+<td><code>dspy.settings.configure(lm=task_lm)</code> - set once, used
+implicitly everywhere</td>
+<td>If you skip this, the <em>first</em> <code>dspy.Predict(...)</code>
+call fails with an opaque "no LM configured" error, not at config
+time.</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><strong>Kicking off optimization</strong></td>
+<td><code>optimizer.optimize(prompt=starting_prompt, goldens=gold_goldens[:10])</code>
+→ returns a prompt-like object</td>
+<td><code>gepa.compile(student=module, trainset=dspy_trainset)</code> →
+returns a <strong>compiled Module</strong></td>
+<td>The return value is an <em>object you can call</em>, not a template
+string.</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td><strong>Reading the optimized prompt back out</strong></td>
+<td><code>optimised_result.text_template</code></td>
+<td><code>compiled.predictors()[i].signature.instructions</code>
+(rewritten docstring) and <code>.demos</code> (few-shot examples GEPA
+attached)</td>
+<td>There is no single <code>.text_template</code>. You inspect
+predictors on the compiled Module.</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td><strong>Train / test split</strong></td>
+<td>A held-out set can be evaluated after optimization</td>
+<td><code>dspy_trainset</code> passed to <code>.compile()</code>;
+<code>dspy_testset</code> held out and compared afterward</td>
+<td>Conceptually identical to ML train/test - DSPy makes
+<code>trainset</code> an explicit argument.</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="2-minimal-working-shapes-adapt-these-to-the-project-skeleton">2.
+Minimal working shapes (adapt these to the project skeleton)<span class="section-tag ds">DSPy code</span></h2>
+<p>The snippets below show the project-specific shape. They are
+intentionally small; the project notebook supplies the existing
+retriever and evaluation data.</p>
+<p><strong>Signature (the prompt):</strong></p>
+<pre class="python"><code>class GroundedQA(dspy.Signature):
+    &quot;&quot;&quot;Answer the question using ONLY the provided context.
+    If the context does not contain the answer, say you don&#39;t know.&quot;&quot;&quot;
+    context:  str = dspy.InputField(desc=&quot;Retrieved passages&quot;)
+    question: str = dspy.InputField(desc=&quot;The user&#39;s question&quot;)
+    answer:   str = dspy.OutputField(desc=&quot;Answer grounded strictly in context&quot;)</code></pre>
+<p><strong>Module (the pipeline GEPA actually optimizes):</strong></p>
+<pre class="python"><code>class GroundedRAG(dspy.Module):
+    def __init__(self):
+        super().__init__()
+        self.generate = dspy.Predict(GroundedQA)
+
+    def forward(self, question, ticker_hint):
+        # Retrieval is fixed Python code; GEPA sees its output while scoring candidates.
+        docs = retrieve(question, company=ticker_hint, k=TOP_K)
+        context = format_context(docs)
+        return self.generate(context=context, question=question)</code></pre>
+<p><strong>Metric (score + feedback GEPA reflects on):</strong></p>
+<pre class="python"><code>def gepa_metric(example, pred, trace=None, pred_name=None, pred_trace=None):
+    answer = (pred.answer or &quot;&quot;).strip()
+    hit = example.expected_substring.lower() in answer.lower()
+    score = 1.0 if hit else 0.0
+    if hit and len(answer.split()) &gt; 80:
+        score = min(score, 0.7)   # penalize keyword-stuffed long answers
+    feedback = &quot;Correct and concise.&quot; if score == 1.0 else \
+               f&quot;Missing expected content: &#39;{example.expected_substring}&#39;.&quot;
+    return dspy.Prediction(score=score, feedback=feedback)</code></pre>
+<p><code>expected_substring</code> is metric-only ground truth. Do not
+mark it as an input, or the program could see the answer it is supposed
+to discover.</p>
+<p><strong>LM config + compile:</strong></p>
+<pre class="python"><code>task_lm = dspy.LM(
+    model=&quot;openai/gpt-4o-mini&quot;, temperature=0.1,
+    api_key=os.environ[&quot;OPENAI_API_KEY&quot;], api_base=os.environ[&quot;OPENAI_BASE_URL&quot;],
+)
+reflection_lm = dspy.LM(
+    model=&quot;openai/gpt-4o-mini&quot;, temperature=1.0,
+    api_key=os.environ[&quot;OPENAI_API_KEY&quot;], api_base=os.environ[&quot;OPENAI_BASE_URL&quot;],
+)
+dspy.settings.configure(lm=task_lm)
+
+gepa = GEPA(metric=gepa_metric, reflection_lm=reflection_lm, auto=&quot;light&quot;)
+compiled_program = gepa.compile(student=GroundedRAG(), trainset=dspy_trainset)</code></pre>
+<p><strong>Reading the evolved prompt:</strong></p>
+<pre class="python"><code>for name, predictor in compiled_program.named_predictors():
+    print(name, &quot;-&gt;&quot;, predictor.signature.instructions)
+    print(&quot;few-shot demos attached:&quot;, len(predictor.demos))</code></pre>
+<hr />
+<h3 id="21-the-complete-project-shaped-flow">2.1 The complete
+project-shaped flow</h3>
+<p>This is the direct DeepEval-to-DSPy translation used by the project
+notebook:</p>
+<pre class="python"><code>def make_example(row):
+    return dspy.Example(
+        question=row[&quot;question&quot;], ticker_hint=row[&quot;ticker_hint&quot;],
+        expected_substring=row[&quot;expected_substring&quot;],
+    ).with_inputs(&quot;question&quot;, &quot;ticker_hint&quot;)
+
+class GroundedQA(dspy.Signature):
+    &quot;&quot;&quot;Answer using only the supplied context. If it is insufficient, say exactly
+    &quot;I don&#39;t know.&quot; Name the specific product or initiative when the context provides it.&quot;&quot;&quot;
+    context: str = dspy.InputField()
+    question: str = dspy.InputField()
+    answer: str = dspy.OutputField()
+
+class GroundedRAG(dspy.Module):
+    def __init__(self, k=TOP_K):
+        super().__init__()
+        self.k = k
+        self.generate = dspy.Predict(GroundedQA)
+
+    def forward(self, question, ticker_hint):
+        docs = retrieve(question, company=ticker_hint, k=self.k)
+        return self.generate(context=format_context(docs), question=question)
+
+gepa = GEPA(metric=gepa_metric, reflection_lm=reflection_lm,
+            auto=&quot;light&quot;, track_stats=True, seed=42)
+compiled = gepa.compile(student=GroundedRAG(), trainset=dspy_trainset)
+
+# Use the held-out set only after compilation.
+for example in dspy_testset:
+    prediction = compiled(**example.inputs())
+    print(prediction.answer)</code></pre>
+<p>The <code>trainset</code> is used for optimization. The held-out
+<code>dspy_testset</code> is used only for the before/after comparison,
+just as in a standard evaluation experiment.</p>
+<hr>
+<h2 id="3-common-errors--fix">3. Common errors → fix<span class="section-tag ds">DSPy</span></h2>
+<div class="table-scroll"><table>
+<thead>
+<tr class="header">
+<th>Error / symptom</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Metric invocation/signature error</td>
+<td>Metric function does not accept the optional GEPA arguments used by
+the installed version</td>
+<td>Use the project shape
+<code>gepa_metric(example, pred, trace=None, pred_name=None, pred_trace=None)</code></td>
+</tr>
+<tr class="even">
+<td><code>AttributeError: 'GroundedRAG' object has no attribute 'inputs'</code>
+on an Example</td>
+<td>Forgot <code>.with_inputs(...)</code> when building
+<code>dspy.Example</code></td>
+<td>Call <code>.with_inputs("question", "ticker_hint")</code> on every
+project example</td>
+</tr>
+<tr class="odd">
+<td>GEPA runs but the prompt barely changes / result looks random</td>
+<td>Metric returns a bare float instead of
+<code>dspy.Prediction(score=, feedback=)</code></td>
+<td>Always wrap the return, and make <code>feedback</code> a genuinely
+informative sentence</td>
+</tr>
+<tr class="even">
+<td><code>ContextWindowExceeded</code> / "No LM is loaded" the first
+time you call <code>dspy.Predict</code></td>
+<td><code>dspy.settings.configure(lm=...)</code> never ran, or ran after
+the first call</td>
+<td>Run <code>dspy.settings.configure(lm=task_lm)</code> immediately
+after creating <code>task_lm</code>, before any
+<code>Predict</code></td>
+</tr>
+<tr class="odd">
+<td>Looking for <code>.text_template</code> on the GEPA result and
+getting <code>AttributeError</code></td>
+<td>Carrying over the DeepEval mental model - DSPy's GEPA returns a
+compiled Module, not a prompt object</td>
+<td>Use <code>compiled.predictors()</code> /
+<code>.named_predictors()</code> and read
+<code>.signature.instructions</code></td>
+</tr>
+<tr class="even">
+<td>Reflection doesn't seem to improve anything over iterations</td>
+<td><code>reflection_lm</code> not passed, or accidentally set to the
+same object as <code>task_lm</code> with <code>temperature=0</code></td>
+<td>Pass a distinct <code>dspy.LM(...)</code> with higher temperature as
+<code>reflection_lm</code></td>
+</tr>
+<tr class="odd">
+<td>GEPA "optimizes" but ignores your retrieval logic</td>
+<td>Retrieval called <em>outside</em> <code>forward()</code>, with only
+the answer-generation step wrapped</td>
+<td>Move retrieval inside <code>Module.forward()</code> so it's part of
+what GEPA scores each iteration</td>
+</tr>
+<tr class="even">
+<td><code>NameError</code> for <code>retrieve</code>,
+<code>format_context</code>, <code>TOP_K</code>, or
+<code>dspy_trainset</code></td>
+<td>Project setup cells were skipped, or code was copied out of
+context</td>
+<td>Run the project notebook in order; these are supplied by earlier
+project sections</td>
+</tr>
+<tr class="odd">
+<td>The model sees <code>expected_substring</code></td>
+<td>It was included in <code>.with_inputs(...)</code></td>
+<td>Use only <code>.with_inputs("question", "ticker_hint")</code>; keep
+the label for the metric</td>
+</tr>
+<tr class="even">
+<td><code>dspy.LM</code> cannot reach the configured endpoint</td>
+<td>A custom API base URL/key was omitted</td>
+<td>Pass the notebook's <code>OPENAI_API_KEY</code> and
+<code>OPENAI_BASE_URL</code> as shown above</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="4-saving-and-checking-the-result">4. Saving and checking the
+result <span class="section-tag ds">DSPy</span></h2>
+<p>The compiled result is a callable <code>dspy.Module</code>, not a
+prompt string. The project persists it with:</p>
+<pre class="python"><code>compiled.save(&quot;gepa_optimised_rag.json&quot;)
+
+for name, predictor in compiled.named_predictors():
+    print(name, predictor.signature.instructions)
+    print(&quot;demos:&quot;, len(getattr(predictor, &quot;demos&quot;, [])))</code></pre>
+<p>Keep the notebook's pinned <code>dspy==3.2.1</code> when reproducing
+the run. If a different DSPy version changes GEPA arguments or
+predictor-inspection methods, return to the project-pinned environment
+before debugging the prompt itself.</p>
+<hr>
+<h2 id="5-one-line-mental-model">5. One-line mental model</h2>
+<blockquote>
+<p><strong>DeepEval's GEPA optimizes a template string, driven by an external callback you write.</strong></p>
+<p><strong>DSPy's GEPA optimizes a live Python object (your <code>Module</code>), by rewriting the docstring of a <code>Signature</code> class embedded inside it - and it needs your metric function to hand back both a score AND a sentence of feedback, or reflection has nothing to work with.</strong></p>
+</blockquote>
+
+
+  <footer>
+    DualLens Analytics Project · DSPy == 3.2.1. 
+  </footer>
+
+</div>
+</body>
+</html>
