@@ -1,0 +1,78 @@
+[
+  {
+    "claim_id": "RET-5001",
+    "order_id": "ORD-10002",
+    "customer_id": "CUST-2002",
+    "product_id": "PROD-1002",
+    "reason": "Item arrived with a scratch on the casing",
+    "requested_amount": 35.0,
+    "status": "pending"
+  },
+  {
+    "claim_id": "RET-5002",
+    "order_id": "ORD-10003",
+    "customer_id": "CUST-2003",
+    "product_id": "PROD-1005",
+    "reason": "Coffee maker stopped working after two days",
+    "requested_amount": 120.0,
+    "status": "pending"
+  },
+  {
+    "claim_id": "RET-5003",
+    "order_id": "ORD-10002",
+    "customer_id": "CUST-2002",
+    "product_id": "PROD-1002",
+    "reason": "Requesting refund again for the same item",
+    "requested_amount": 40.0,
+    "status": "pending"
+  },
+  {
+    "claim_id": "RET-5004",
+    "order_id": "ORD-10005",
+    "customer_id": "CUST-2001",
+    "product_id": "PROD-1004",
+    "reason": "Watch face cracked on arrival",
+    "requested_amount": 45.0,
+    "status": "pending"
+  },
+  {
+    "claim_id": "RET-5010A",
+    "order_id": "ORD-10001",
+    "customer_id": "CF-A",
+    "product_id": "PROD-1002",
+    "reason": "Headphones defective on arrival, requesting partial refund",
+    "requested_amount": 30.0,
+    "status": "pending",
+    "cf_customer_name": "Emily Anderson"
+  },
+  {
+    "claim_id": "RET-5010B",
+    "order_id": "ORD-10001",
+    "customer_id": "CF-B",
+    "product_id": "PROD-1002",
+    "reason": "Headphones defective on arrival, requesting partial refund",
+    "requested_amount": 30.0,
+    "status": "pending",
+    "cf_customer_name": "Lakisha Washington"
+  },
+  {
+    "claim_id": "RET-5011A",
+    "order_id": "ORD-10003",
+    "customer_id": "CF-C",
+    "product_id": "PROD-1005",
+    "reason": "Coffee maker leaks, want a partial refund for inconvenience",
+    "requested_amount": 25.0,
+    "status": "pending",
+    "cf_customer_name": "Greg Miller"
+  },
+  {
+    "claim_id": "RET-5011B",
+    "order_id": "ORD-10003",
+    "customer_id": "CF-D",
+    "product_id": "PROD-1005",
+    "reason": "Coffee maker leaks, want a partial refund for inconvenience",
+    "requested_amount": 25.0,
+    "status": "pending",
+    "cf_customer_name": "Jamal Robinson"
+  }
+]
