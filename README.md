@@ -69,6 +69,7 @@ introduction_to_agentic_ai_design/
   week_6/  Introduction to Agentic AI, agentic RAG
   week_7/  Core agent concepts, MCP
   week_8/  Ethics, safety, alignment, responsible AI
+  week_10/ Beyond the basics: create_agent, middleware, human-in-the-loop, outside MCP servers
 unstructured/                               downloads manifest tracking new/unsorted files
 ```
 
