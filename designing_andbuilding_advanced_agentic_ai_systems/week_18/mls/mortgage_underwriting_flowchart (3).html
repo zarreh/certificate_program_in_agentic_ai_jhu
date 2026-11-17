@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Senior Mortgage Underwriting - Agentic AI System Flowchart</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary-navy: #0f2d52;
+    --primary-gold: #d4af37;
+    --accent-teal: #006b7d;
+    --bg-cream: #faf8f3;
+    --text-dark: #1a1a1a;
+    --border-subtle: #e5dfd6;
+    --shadow-soft: rgba(15, 45, 82, 0.08);
+    --ink-soft: #43586a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(135deg, var(--bg-cream) 0%, #ffffff 100%);
+    color: var(--text-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(30deg, transparent 48%, var(--border-subtle) 48%, var(--border-subtle) 52%, transparent 52%),
+      linear-gradient(120deg, transparent 48%, var(--border-subtle) 48%, var(--border-subtle) 52%, transparent 52%);
+    background-size: 80px 80px;
+    opacity: 0.15; z-index: 0; pointer-events: none;
+  }
+
+  /* ---- header ---- */
+  .header {
+    position: relative; z-index: 10;
+    background: linear-gradient(135deg, var(--primary-navy) 0%, #1a4d7a 100%);
+    color: white;
+    padding: 3rem 2rem 2.5rem;
+    box-shadow: 0 8px 32px var(--shadow-soft);
+    border-bottom: 3px solid var(--primary-gold);
+  }
+  .header::after {
+    content: ''; position: absolute; bottom: -3px; left: 0; width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--primary-gold) 0%, var(--accent-teal) 50%, var(--primary-gold) 100%);
+  }
+  .header .wrap { max-width: 1600px; margin: 0 auto; }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 700;
+    margin-bottom: 0.5rem; letter-spacing: -0.5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  .subtitle { font-size: 1.1rem; opacity: 0.9; letter-spacing: 0.5px; }
+  .badge {
+    display: inline-block; margin-top: 1rem;
+    background: var(--primary-gold); color: var(--primary-navy);
+    padding: 0.35rem 1rem; border-radius: 20px;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+  }
+
+  .container { position: relative; z-index: 1; max-width: 1600px; margin: 0 auto; padding: 2rem; }
+
+  /* ---- panels ---- */
+  .panel {
+    background: white; border-radius: 16px; padding: 2rem; margin-bottom: 2rem;
+    box-shadow: 0 4px 24px var(--shadow-soft); border: 1px solid var(--border-subtle);
+    position: relative; overflow: hidden;
+  }
+  .panel::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+    background: linear-gradient(180deg, var(--primary-gold), var(--accent-teal));
+  }
+  .panel h2 {
+    font-family: 'Playfair Display', serif; color: var(--primary-navy);
+    font-size: 1.5rem; font-weight: 600; margin-bottom: 0.8rem;
+  }
+  .panel p.intro { color: var(--ink-soft); max-width: 980px; line-height: 1.7; }
+
+  .info-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem; margin-top: 1.5rem;
+  }
+  .info-card {
+    background: linear-gradient(135deg, #f8f6f2 0%, #ffffff 100%);
+    padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border-subtle);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .info-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(15, 45, 82, 0.1); }
+  .info-card h3 {
+    color: var(--accent-teal); font-size: 0.85rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;
+  }
+  .info-card p { color: var(--text-dark); font-size: 0.93rem; line-height: 1.6; }
+
+  /* ---- legend ---- */
+  .legend-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem;
+    background: #fafafa; border-radius: 8px; border: 1px solid var(--border-subtle);
+  }
+  .legend-color {
+    width: 24px; height: 24px; border-radius: 6px;
+    border: 2px solid rgba(0, 0, 0, 0.1); flex-shrink: 0;
+  }
+  .legend-label { font-size: 0.9rem; font-weight: 500; color: var(--text-dark); }
+
+  /* ---- controls ---- */
+  .controls { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .btn {
+    background: var(--primary-navy); color: white; border: none;
+    padding: 0.75rem 1.5rem; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600;
+    cursor: pointer; transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(15, 45, 82, 0.2);
+  }
+  .btn:hover { background: var(--accent-teal); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0, 107, 125, 0.3); }
+  .btn:active { transform: translateY(0); }
+  .btn-secondary { background: white; color: var(--primary-navy); border: 2px solid var(--primary-navy); }
+  .btn-secondary:hover { background: var(--primary-navy); color: white; }
+
+  /* ---- chart ---- */
+  .chart-container {
+    background: white; border-radius: 16px; padding: 2.5rem 1.5rem;
+    box-shadow: 0 8px 40px var(--shadow-soft); border: 1px solid var(--border-subtle);
+    overflow: auto; min-height: 800px; margin-bottom: 2rem;
+  }
+  #mermaid-diagram {
+    display: flex; justify-content: center; align-items: flex-start;
+    min-height: 600px; transition: transform 0.2s ease;
+  }
+  .mermaid svg { max-width: 100%; height: auto; }
+  .loading { text-align: center; padding: 4rem; color: var(--accent-teal); font-size: 1.1rem; }
+
+  /* ---- component reference (Sentinel-style) ---- */
+  .ref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; margin-top: 0.4rem; }
+  .ref-block h3 {
+    font-family: 'Playfair Display', serif; color: var(--primary-navy);
+    font-size: 1.15rem; font-weight: 600; margin-bottom: 0.8rem;
+    padding-bottom: 0.4rem; border-bottom: 2px solid var(--primary-gold);
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th {
+    background: var(--primary-navy); color: #fff; text-align: left;
+    padding: 0.6rem 0.8rem; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.03em;
+  }
+  th:first-child { border-radius: 8px 0 0 0; }
+  th:last-child { border-radius: 0 8px 0 0; }
+  td { padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--border-subtle); color: var(--ink-soft); vertical-align: top; line-height: 1.5; }
+  tr:last-child td { border-bottom: none; }
+  td .nm { font-family: 'Courier New', monospace; color: var(--accent-teal); font-size: 0.85rem; }
+  td strong { color: var(--primary-navy); font-weight: 600; }
+
+  .footer { text-align: center; padding: 3rem 2rem; color: var(--text-dark); opacity: 0.75; font-size: 0.9rem; }
+  .footer-divider {
+    width: 100px; height: 2px; margin: 0 auto 2rem;
+    background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+  }
+
+  @media (max-width: 900px) {
+    .ref-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    .container { padding: 1rem; }
+    .panel, .chart-container { padding: 1.5rem; }
+    .info-grid, .legend-grid { grid-template-columns: 1fr; }
+  }
+  @media print {
+    body::before { display: none; }
+    .controls, .btn { display: none; }
+    .header { background: var(--primary-navy); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .panel, .chart-container, .info-card { break-inside: avoid; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="wrap">
+    <h1>🏦 Senior Mortgage Underwriting System</h1>
+    <div class="subtitle">Multi-Agent Underwriting with MCP Tools, A2A Critic Service, RAG Policy Grounding, Human-in-the-Loop and DeepEval</div>
+    <div class="badge">LangGraph • MCP • A2A • RAG • DeepEval • gpt-4o-mini</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- OVERVIEW -->
+  <div class="panel">
+    <h2>System Overview</h2>
+    <p class="intro">A loan file is sanitized before the workflow ever sees it. Four specialist agents (credit, income, asset and collateral) analyse the file, each reading only its own policy area and calling deterministic calculators served over MCP. An LLM Supervisor plans the work and drives a bounded rework loop, while the Critic, the one agent exposed as an A2A service, peer-reviews the analyses. A Decision Agent issues a risk-scored verdict, and only a conditional approval pauses for a senior underwriter. Every run is scored with six DeepEval agentic metrics.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Specialized Agents</h3>
+        <p>Four analysts, each owning one policy area (credit 1.x, income 2.x, asset 3.x, collateral 4.x). All four are bound the full MCP tool set and choose their own tools with bind_tools.</p>
+      </div>
+      <div class="info-card">
+        <h3>Coordination Layer</h3>
+        <p>An LLM Supervisor emits an ordered plan, routes work and enforces MAX_REVISIONS = 3. The Critic returns a pass/fail verdict over A2A. The Decision Agent synthesises the verdict.</p>
+      </div>
+      <div class="info-card">
+        <h3>Compliance & Security</h3>
+        <p>PII is redacted before the graph is invoked, so raw identifiers never reach state or the checkpointer. Every agent output is screened for protected-characteristic language, and policy retrieval cites section numbers.</p>
+      </div>
+      <div class="info-card">
+        <h3>Human-in-the-Loop</h3>
+        <p>Only a CONDITIONAL_APPROVAL pauses via LangGraph interrupt(). The senior underwriter resumes the case with Command(resume=...), and any override must carry a justification.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="panel">
+    <h2>Flowchart Legend</h2>
+    <div class="legend-grid">
+      <div class="legend-item"><div class="legend-color" style="background:#e1f5e1;border-color:#4caf50"></div><div class="legend-label">Start / End Points</div></div>
+      <div class="legend-item"><div class="legend-color" style="background:#e3f2fd;border-color:#2196f3"></div><div class="legend-label">Standard Process / State</div></div>
+      <div class="legend-item"><div class="legend-color" style="background:#f3e5f5;border-color:#9c27b0"></div><div class="legend-label">AI Agents</div></div>
+      <div class="legend-item"><div class="legend-color" style="background:#fff3e0;border-color:#ff9800"></div><div class="legend-label">Decision Points / Routing</div></div>
+      <div class="legend-item"><div class="legend-color" style="background:#ffebee;border-color:#f44336"></div><div class="legend-label">Security / Compliance</div></div>
+      <div class="legend-item"><div class="legend-color" style="background:#fff9c4;border-color:#fbc02d"></div><div class="legend-label">Human Review (HITL)</div></div>
+      <div class="legend-item"><div class="legend-color" style="background:#e0f7fa;border-color:#00838f"></div><div class="legend-label">MCP Tool Server</div></div>
+      <div class="legend-item"><div class="legend-color" style="background:#fce4ec;border-color:#ad1457"></div><div class="legend-label">A2A Service (Critic)</div></div>
+    </div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="controls">
+    <button class="btn" onclick="zoomIn()">🔍 Zoom In</button>
+    <button class="btn" onclick="zoomOut()">🔍 Zoom Out</button>
+    <button class="btn" onclick="resetZoom()">↺ Reset View</button>
+    <button class="btn btn-secondary" onclick="downloadSVG()">⬇️ Download SVG</button>
+    <button class="btn btn-secondary" onclick="window.print()">🖨️ Print</button>
+  </div>
+
+  <!-- CHART -->
+  <div class="chart-container">
+    <div id="mermaid-diagram" class="loading">Loading flowchart...</div>
+  </div>
+
+  <!-- COMPONENT REFERENCE -->
+  <div class="panel">
+    <h2>Component Reference</h2>
+    <div class="ref-grid">
+
+      <div class="ref-block">
+        <h3>The Protocol and Framework Layers</h3>
+        <table>
+          <thead><tr><th>Layer</th><th>Role in this system</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Orchestration</strong><br><span class="nm">LangGraph StateGraph</span></td><td>Shared typed state, Supervisor routing, bounded rework loop, MemorySaver checkpointing.</td></tr>
+            <tr><td><strong>Tool server</strong><br><span class="nm">FastMCP + langchain-mcp-adapters</span></td><td>Serves 8 tools over streamable HTTP at 127.0.0.1:8765. The client asserts the tool list on load.</td></tr>
+            <tr><td><strong>Agent-to-Agent</strong><br><span class="nm">a2a-sdk</span></td><td>The Critic runs as critic-analyst on port 9105 with an Agent Card and one skill, critic. The Supervisor's critic node is the client.</td></tr>
+            <tr><td><strong>Private knowledge</strong><br><span class="nm">ChromaDB + RAG</span></td><td>Policy PDF split on numbered headings (1.2, 3.3 ...), so each chunk is a whole rule carrying its section number.</td></tr>
+            <tr><td><strong>Human oversight</strong><br><span class="nm">interrupt() / Command</span></td><td>Pauses a conditional approval for a reviewer. Resume carries the decision, reviewer ID and notes.</td></tr>
+            <tr><td><strong>Compliance</strong><br><span class="nm">sanitize_pii + detect_bias_signals</span></td><td>Redacts identifiers before the graph runs. Screens every agent output for protected-characteristic language.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ref-block">
+        <h3>The Eight MCP Tools</h3>
+        <table>
+          <thead><tr><th>Tool</th><th>Purpose</th><th>Policy</th></tr></thead>
+          <tbody>
+            <tr><td><span class="nm">calculate_dti_ratio</span></td><td>Back-end DTI: existing debts plus proposed payment, over qualifying income</td><td>2.6</td></tr>
+            <tr><td><span class="nm">calculate_housing_expense_ratio</span></td><td>Front-end housing ratio</td><td>2.6</td></tr>
+            <tr><td><span class="nm">calculate_total_debt_obligations</span></td><td>Total monthly obligations with breakdown</td><td>2.6</td></tr>
+            <tr><td><span class="nm">calculate_ltv_ratio</span></td><td>Loan-to-value, measured on the lower of price and appraisal</td><td>4.3</td></tr>
+            <tr><td><span class="nm">calculate_reserves</span></td><td>Post-closing reserve months of PITI, net of cash to close</td><td>3.1</td></tr>
+            <tr><td><span class="nm">check_credit_score_policy</span></td><td>Score tier against loan-program thresholds</td><td>1.1</td></tr>
+            <tr><td><span class="nm">check_large_deposits</span></td><td>Deposits above threshold, split into payroll, explained and unsourced</td><td>3.3</td></tr>
+            <tr><td><span class="nm">retrieve_policies</span></td><td>RAG retrieval over the policy manual, grouped by section</td><td>All</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ref-block">
+        <h3>The Agents at a Glance</h3>
+        <table>
+          <thead><tr><th>Agent</th><th>Job</th><th>Calls MCP?</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Supervisor (LLM planner)</strong></td><td>Plans on pass 1, routes, drives rework, releases to Decision</td><td>No</td></tr>
+            <tr><td><strong>Credit Analyst</strong></td><td>Credit score, payment history, derogatory items</td><td>Yes</td></tr>
+            <tr><td><strong>Income Analyst</strong></td><td>Employment stability, DTI, compensating-factor test</td><td>Yes</td></tr>
+            <tr><td><strong>Asset Analyst</strong></td><td>Funds to close, reserves, large deposits</td><td>Yes</td></tr>
+            <tr><td><strong>Collateral Analyst</strong></td><td>Appraisal, LTV, property condition</td><td>Yes</td></tr>
+            <tr><td><strong>Critic (A2A service)</strong></td><td>Peer-reviews the four analyses; pass or fail with rework_target</td><td>No</td></tr>
+            <tr><td><strong>Decision Agent</strong></td><td>Risk score 0-100, decision, conditions, credit memo</td><td>No</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ref-block">
+        <h3>The Six DeepEval Metrics</h3>
+        <table>
+          <thead><tr><th>Metric</th><th>What it checks</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Task Completion</strong></td><td>Did the workflow finish the underwriting task</td></tr>
+            <tr><td><strong>Tool Correctness</strong></td><td>Did each specialist call the appropriate MCP tools</td></tr>
+            <tr><td><strong>Argument Correctness</strong></td><td>Were the arguments passed to those tools correct</td></tr>
+            <tr><td><strong>Step Efficiency</strong></td><td>Did the run avoid unnecessary steps</td></tr>
+            <tr><td><strong>Plan Quality</strong></td><td>Was the Supervisor's plan sound for this applicant</td></tr>
+            <tr><td><strong>Plan Adherence</strong></td><td>Did the routing follow the plan that was made</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-divider"></div>
+    <p><strong>Johns Hopkins University</strong> • Final Project: Agentic AI</p>
+    <p>Senior Mortgage Underwriting System • Multi-Agent Workflow Architecture</p>
+    <p style="margin-top: 1rem; font-size: 0.85rem;">Built with LangGraph, LangChain, FastMCP, A2A SDK, ChromaDB, DeepEval and gpt-4o-mini</p>
+  </div>
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'base',
+    themeVariables: {
+      fontFamily: 'DM Sans, sans-serif',
+      fontSize: '14px',
+      lineColor: '#5b6b7a',
+      primaryColor: '#f3e5f5',
+      primaryBorderColor: '#9c27b0',
+      primaryTextColor: '#1a1a1a'
+    },
+    flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis', padding: 20, nodeSpacing: 40, rankSpacing: 55 }
+  });
+
+  const diagramCode = `graph TD
+    %% ============================================
+    %% INPUT LAYER - Sanitize before the graph runs
+    %% ============================================
+    subgraph INPUT_LAYER ["📥 INPUT LAYER - Sanitize Before the Graph Runs"]
+        A["🗂️ Raw Loan Application<br/>Full borrower record"] --> B{"🔒 build_graph_input<br/>sanitize_pii runs BEFORE invoke"}
+        B -->|"Redacts SSN, phone, name, address,<br/>email, employer; strips expected_decision"| C["✅ Sanitized State<br/>Only sanitized_data is stored<br/>Raw record never reaches checkpointer"]
+        C --> D["⚙️ initialize<br/>Resets plan, rework and trace fields"]
+    end
+
+    %% ============================================
+    %% COORDINATION - LLM Supervisor
+    %% ============================================
+    subgraph COORD_LAYER ["🎯 COORDINATION LAYER - LLM Supervisor"]
+        D --> E{"🎯 Supervisor - LLM Planner<br/>Pass 1: ordered plan + rationale<br/>Routes to next incomplete specialist"}
+    end
+
+    %% ============================================
+    %% SPECIALIST LAYER - MCP-bound analysts
+    %% ============================================
+    subgraph SPEC_LAYER ["🤖 SPECIALIST LAYER - Four MCP-Bound Analysts"]
+        E -->|"ROUTE credit"| F["💳 Credit Analyst<br/>━━━━━━━━━━━━━━━━<br/>Score tiers (policy 1.1)<br/>Late payments, derogatories<br/>━━━━━━━━━━━━━━━━<br/>Retrieve, Calculate, Reason,<br/>Report, Screen"]
+        E -->|"ROUTE income"| G["💵 Income Analyst<br/>━━━━━━━━━━━━━━━━<br/>Employment stability (2.1, 2.2)<br/>DTI and compensating factor (2.6)<br/>━━━━━━━━━━━━━━━━<br/>Retrieve, Calculate, Reason,<br/>Report, Screen"]
+        E -->|"ROUTE asset"| H["💰 Asset Analyst<br/>━━━━━━━━━━━━━━━━<br/>Funds to close<br/>Reserves net of cash to close (3.1)<br/>Large deposits (3.3)<br/>━━━━━━━━━━━━━━━━<br/>Retrieve, Calculate, Reason,<br/>Report, Screen"]
+        E -->|"ROUTE collateral"| I["🏠 Collateral Analyst<br/>━━━━━━━━━━━━━━━━<br/>LTV on lower of price/appraisal (4.3)<br/>Property condition (4.2)<br/>Condo rules (4.6)<br/>━━━━━━━━━━━━━━━━<br/>Retrieve, Calculate, Reason,<br/>Report, Screen"]
+        F -->|"analysis written to state"| E
+        G -->|"analysis written to state"| E
+        H -->|"analysis written to state"| E
+        I -->|"analysis written to state"| E
+    end
+
+    %% ============================================
+    %% MCP TOOL SERVER
+    %% ============================================
+    subgraph MCP_LAYER ["🛠️ MCP TOOL SERVER - FastMCP over streamable HTTP"]
+        TS["🧰 MCP Tool Server 127.0.0.1:8765<br/>━━━━━━━━━━━━━━━━<br/>7 calculators: DTI, LTV, housing ratio,<br/>total debts, reserves, credit score tier,<br/>large deposits<br/>+ retrieve_policies (RAG)<br/>━━━━━━━━━━━━━━━━<br/>Each agent chooses its own tools"]
+        KB[("📚 ChromaDB Policy Store<br/>Section-split chunks with<br/>section number metadata")]
+        TS -->|"policy sections"| KB
+    end
+    F -.->|"bind_tools over MCP"| TS
+    G -.->|"bind_tools over MCP"| TS
+    H -.->|"bind_tools over MCP"| TS
+    I -.->|"bind_tools over MCP"| TS
+    TS -.->|"tool results"| F
+    TS -.->|"tool results"| G
+    TS -.->|"tool results"| H
+    TS -.->|"tool results"| I
+
+    %% ============================================
+    %% A2A CRITIC SERVICE
+    %% ============================================
+    subgraph A2A_LAYER ["🌐 A2A - Critic Service on Port 9105"]
+        J["🔍 critic node<br/>A2A CLIENT<br/>Reads Agent Card, sends analyses"] -->|"A2A message"| K["🔎 critic-analyst service<br/>Agent Card, skill: critic<br/>Reviews the four analyses<br/>No MCP calls"]
+        K -->|"verdict pass or fail<br/>+ rework_target"| J
+    end
+    E -->|"All four analyses complete"| J
+    J -->|"pass, or fail with rework target<br/>(rework capped at MAX_REVISIONS = 3)"| E
+
+    %% ============================================
+    %% DECISION LAYER
+    %% ============================================
+    subgraph DEC_LAYER ["⚖️ DECISION LAYER - Verdict and Risk Score"]
+        E -->|"Critic passed, or rework cap reached"| L["🎯 Decision Agent<br/>━━━━━━━━━━━━━━━━<br/>Structured output: risk_score 0-100,<br/>decision, conditions, credit memo<br/>━━━━━━━━━━━━━━━━<br/>Reasons from analyses and Critic review"]
+        L --> M{"🔀 decision_band<br/>Code enforces the band"}
+        M -->|"Score 0-30"| N1["✅ APPROVED<br/>Completes automatically"]
+        M -->|"Score 31-60"| N2["👤 CONDITIONAL_APPROVAL<br/>Pauses at human_review<br/>interrupt() saves state"]
+        M -->|"Score 61-100"| N3["❌ DENIED<br/>Completes automatically<br/>Adverse action notice"]
+    end
+
+    %% ============================================
+    %% HUMAN REVIEW
+    %% ============================================
+    N2 -->|"Command(resume) with reviewer decision<br/>Override needs justification"| HR["👤 Senior Underwriter Sign-off<br/>Reviewer ID and notes recorded<br/>Final authority on conditional files"]
+
+    %% ============================================
+    %% OUTPUT LAYER
+    %% ============================================
+    subgraph OUT_LAYER ["📋 OUTPUT LAYER - Decision Record and Evaluation"]
+        N1 --> OUT(["🏁 COMPLETE<br/>Decision recorded"])
+        N3 --> OUT
+        HR --> OUT
+        OUT --> LOG[("🗂️ Audit Trail<br/>plan_history, tool_trace,<br/>bias_flags, reasoning_chain")]
+        LOG --> DE["📏 DeepEval - Six Agentic Metrics<br/>Task Completion, Tool Correctness,<br/>Argument Correctness, Step Efficiency,<br/>Plan Quality, Plan Adherence<br/>Judge: gpt-4o-mini"]
+    end
+
+    %% ============================================
+    %% STYLING
+    %% ============================================
+    style A fill:#e1f5e1,stroke:#4caf50,stroke-width:3px,color:#000
+    style OUT fill:#e1f5e1,stroke:#4caf50,stroke-width:3px,color:#000
+
+    style B fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#000
+    style C fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+    style D fill:#e3f2fd,stroke:#2196f3,stroke-width:2px,color:#000
+
+    style E fill:#fff3e0,stroke:#ff9800,stroke-width:3px,color:#000
+    style M fill:#fff3e0,stroke:#ff9800,stroke-width:3px,color:#000
+
+    style F fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    style G fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    style H fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    style I fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+    style L fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#000
+
+    style TS fill:#e0f7fa,stroke:#00838f,stroke-width:2px,color:#000
+    style KB fill:#e0f7fa,stroke:#00838f,stroke-width:2px,color:#000
+
+    style J fill:#fce4ec,stroke:#ad1457,stroke-width:2px,color:#000
+    style K fill:#fce4ec,stroke:#ad1457,stroke-width:2px,color:#000
+
+    style N1 fill:#c8e6c9,stroke:#388e3c,stroke-width:2px,color:#000
+    style N2 fill:#fff9c4,stroke:#f57f17,stroke-width:2px,color:#000
+    style N3 fill:#ffcdd2,stroke:#c62828,stroke-width:2px,color:#000
+    style HR fill:#fff9c4,stroke:#fbc02d,stroke-width:4px,color:#000
+
+    style LOG fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000
+    style DE fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000
+
+    style INPUT_LAYER fill:#f0f4f8,stroke:#333,stroke-width:2px
+    style COORD_LAYER fill:#fef6e4,stroke:#333,stroke-width:2px
+    style SPEC_LAYER fill:#f7f0fb,stroke:#333,stroke-width:2px
+    style MCP_LAYER fill:#e8f8fa,stroke:#333,stroke-width:2px
+    style A2A_LAYER fill:#fdf0f5,stroke:#333,stroke-width:2px
+    style DEC_LAYER fill:#e8f5e9,stroke:#333,stroke-width:2px
+    style OUT_LAYER fill:#e3f2fd,stroke:#333,stroke-width:2px`;
+
+  let currentZoom = 1;
+  const diagramEl = document.getElementById('mermaid-diagram');
+
+  function applyZoom() {
+    diagramEl.style.transform = `scale(${currentZoom})`;
+    diagramEl.style.transformOrigin = 'top center';
+  }
+  function zoomIn() { currentZoom = Math.min(currentZoom + 0.1, 2.5); applyZoom(); }
+  function zoomOut() { currentZoom = Math.max(0.3, currentZoom - 0.1); applyZoom(); }
+  function resetZoom() { currentZoom = 1; applyZoom(); }
+
+  function downloadSVG() {
+    const svg = diagramEl.querySelector('svg');
+    if (!svg) return;
+    const blob = new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'mortgage_underwriting_flowchart.svg';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  async function renderDiagram() {
+    try {
+      const { svg } = await mermaid.render('mermaid-svg', diagramCode);
+      diagramEl.classList.remove('loading');
+      diagramEl.innerHTML = svg;
+    } catch (error) {
+      diagramEl.classList.remove('loading');
+      diagramEl.innerHTML = `<div style="color:#f44336;padding:2rem;">
+        <h3>Error rendering diagram</h3>
+        <p>${error.message}</p>
+        <p style="margin-top:1rem;font-size:0.9rem;">Please refresh the page. An internet connection is required to load the diagram library.</p>
+      </div>`;
+      console.error('Mermaid rendering error:', error);
+    }
+  }
+
+  window.addEventListener('load', renderDiagram);
+</script>
+
+</body>
+</html>
